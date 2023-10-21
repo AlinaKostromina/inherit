@@ -28,6 +28,82 @@ public class TodosTest {
         Assertions.assertArrayEquals(expected, actual);
     }
 
+    // новые добавленные тесты на проверку метода поиска
+    @Test
+    public void shouldCheckAndFindMatchesOfSeveralTasks() {
+        SimpleTask simpleTask = new SimpleTask(5, "Позвонить родителям");
+
+        String[] subtasks = { "Позвонить родителям", "Заказать доставку", "Поесть" };
+        Epic epic = new Epic(55, subtasks);
+
+        Meeting meeting = new Meeting(
+                555,
+                "Выкатка 3й версии приложения",
+                "Приложение НетоБанка",
+                "Во вторник после обеда"
+        );
+
+        Todos todos = new Todos();
+
+        todos.add(simpleTask);
+        todos.add(epic);
+        todos.add(meeting);
+
+        Task[] expected = { simpleTask, epic };
+        Task[] actual = todos.search("Позвонить родителям");
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldCheckAndFindMatchesOfOneTask() {
+        SimpleTask simpleTask = new SimpleTask(5, "Убраться");
+
+        String[] subtasks = { "Позвонить родителям", "Заказать доставку", "Поесть" };
+        Epic epic = new Epic(55, subtasks);
+
+        Meeting meeting = new Meeting(
+                555,
+                "Выкатка 3й версии приложения",
+                "Приложение НетоБанка",
+                "Во вторник после обеда"
+        );
+
+        Todos todos = new Todos();
+
+        todos.add(simpleTask);
+        todos.add(epic);
+        todos.add(meeting);
+
+        Task[] expected = { simpleTask };
+        Task[] actual = todos.search("Убраться");
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldCheckAndFindZeroMatches() {
+        SimpleTask simpleTask = new SimpleTask(5, "Убраться");
+
+        String[] subtasks = { "Позвонить родителям", "Заказать доставку", "Поесть" };
+        Epic epic = new Epic(55, subtasks);
+
+        Meeting meeting = new Meeting(
+                555,
+                "Выкатка 3й версии приложения",
+                "Приложение НетоБанка",
+                "Во вторник после обеда"
+        );
+
+        Todos todos = new Todos();
+
+        todos.add(simpleTask);
+        todos.add(epic);
+        todos.add(meeting);
+
+        Task[] expected = { };
+        Task[] actual = todos.search("Написать письмо");
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
     @Test
     public void shouldAddOneTaskOfSimpleTaskType() {
         SimpleTask simpleTask = new SimpleTask(46, "Записаться к врачу");

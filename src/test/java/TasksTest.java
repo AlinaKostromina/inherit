@@ -3,7 +3,6 @@ import org.junit.jupiter.api.Assertions;
 
 public class TasksTest {
 
-
     // SimpleTask tests
     @Test
     public void shouldReturnTrueTestingSimpleTask() {
@@ -101,5 +100,18 @@ public class TasksTest {
 
         Assertions.assertEquals(expected, actual);
     }
+
+//    @Test
+//    public void shouldCheckMatchesOfSeveralTasks() {
+//        String[] subtasks = { "Почитать", "Порисовать", "Поиграть" };
+//        Epic epic = new Epic(45, subtasks);
+//
+//
+//
+//        Boolean expected = false;
+//        Boolean actual = epic.matches("Петь");
+//
+//        Assertions.assertEquals(expected, actual);
+//    }
 
 }
